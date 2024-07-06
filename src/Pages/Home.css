@@ -1,158 +1,72 @@
-.home {
-  /* margin-top: 3rem; */
- 
-  padding-top: 2rem;
-  /* background-color: rgb(82, 7, 82); */
+.home{
+  padding: 5.5rem;
+  color: black;
+  padding-top: 10rem;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 14rem;
+} 
+.para{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color:black;
+    font-size: 1.2rem;
 }
-.home-head {
-  color: white;
-  margin-top: 6rem;
-  margin-left: 5rem;
+.home-head{
+  font-size: 3rem;
 }
-.home-main{
-    display: flex;
-    justify-content: space-between;
-   margin-left: 15rem;
+button{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .home-left{
-    row-gap: 2rem;
-    height: 10rem;
+  width: 35rem;
 }
-p{
-  color: rgb(215, 210, 210);
+
+.btn-1{
+  height: 3.22rem;
+  width: 12rem;
+  background: #913ce1;
+  color: white;
+  border: none;
+  border-radius: 1.2rem;
+  font-family: Poppins, "sans-serif";
+  font-size: 0.98rem;
+  cursor: pointer;
+}
+.btn-2{
+  height: 3.22rem;
+  width: 12rem;
+  border:3px solid  #913ce1;;
+  background: none;
+  color: #913ce1;
+  border-radius: 1.2rem;
+  font-family: Poppins, "sans-serif";
+  font-size: 0.98rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 4rem;
+}
+.btn-2:hover,.btn-1:hover{
+  background-color: #4e0064;
+  border: none;
+  color: white;
+}
+.home-savings{
+  margin-top: 2rem;
   font-size: 1.5rem;
-  margin-top: 4rem;
 }
-/* .home-img {
-  background-image: url("../assets/home-img.jpg");
+.home-right-img{
+  width: 37rem;
+  height: 25rem;
+  background-image:url("../assets/home-left.svg");
   background-position: center;
   background-size: cover;
-  width: 28rem;
-  height: 28rem;
-  border-radius: 1%;
   justify-self: center;
-  box-shadow: inset 0 0 0 5px rgb(255 255 255/30%);
-} */
+  background-repeat: no-repeat;
+}
 
 
 
 
 
-
-
-
-.btn-101,
-.btn-101 *,
-.btn-101 :after,
-.btn-101 :before,
-.btn-101:after,
-.btn-101:before {
-  border: 0 solid;
-  box-sizing: border-box;
-}
-.btn-101 {
-  -webkit-tap-highlight-color: 
-transparent;
-  -webkit-appearance: button;
-  background-color: 
-#000;
-  background-image: none;
-  color: 
-#fff;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 100%;
-  font-weight: 900;
-  line-height: 1.5;
-  margin: 0;
-  /* -webkit-mask-image: -webkit-radial-gradient(#000, #fff); */
-  padding: 0;
-  text-transform: uppercase;
-}
-.btn-101:disabled {
-  cursor: default;
-}
-.btn-101:-moz-focusring {
-  outline: auto;
-}
-.btn-101 svg {
-  vertical-align: middle;
-}
-.btn-101 [hidden] {
-  display: none;
-}
-.btn-101 {
-  --thickness: 0.3rem;
-  --roundness: 1.2rem;
-  --color: 
-#eff6ff;
-  /* --opacity: 0.6; */
-  -webkit-backdrop-filter: blur(100px);
-  backdrop-filter: blur(100px);
-  background: none;
-  background: 
-hsla(0, 0%, 100%, 0.2);
-  border: none;
-  border-radius: var(--roundness);
-  color: var(--color);
-  cursor: pointer;
-  display: block;
-  font-family: Poppins, "sans-serif";
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.8rem 3rem;
-  position: relative;
-}
-.btn-101:hover {
-  background: 
-hsla(0, 0%, 100%, 0.3);
-  filter: brightness(1.2);
-}
-.btn-101:active {
-  --opacity: 0;
-  background: 
-hsla(0, 0%, 100%, 0.1);
-}
-.btn-101 svg {
-  border-radius: var(--roundness);
-  display: block;
-  filter: url(#glow);
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.btn-101 rect {
-  fill: none;
-  stroke: var(--color);
-  stroke-width: var(--thickness);
-  rx: var(--roundness);
-  stroke-linejoin: round;
-  stroke-dasharray: 185%;
-  stroke-dashoffset: 80;
-  -webkit-animation: snake 2s linear infinite;
-  animation: snake 2s linear infinite;
-  -webkit-animation-play-state: paused;
-  animation-play-state: paused;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.2s;
-  width: 100%;
-}
-.btn-101:hover rect {
-  -webkit-animation-play-state: running;
-  animation-play-state: running;
-  opacity: var(--opacity);
-}
-@-webkit-keyframes snake {
-  to {
-    stroke-dashoffset: 370%;
-  }
-}
-@keyframes snake {
-  to {
-    stroke-dashoffset: 370%;
-  }
-}
