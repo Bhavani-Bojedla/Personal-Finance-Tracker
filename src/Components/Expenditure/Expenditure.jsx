@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Category from "./Category";
 import "./Expenditure.css";
+import Layout from "../Navbar/Layout";
 import { Link } from "react-router-dom";
 
 const Expenditure = () => {
@@ -34,10 +35,10 @@ const Expenditure = () => {
     setCategories(updatedCategories);
   };
 
-  // const totalExpenditure = categories.reduce(
-  //   (acc, category) => acc + category.totalCost,
-  //   0
-  // );
+  const totalExpenditure = categories.reduce(
+    (acc, category) => acc + category.totalCost,
+    0
+  );
   useEffect(() => {
     const totalExpenditure = categories.reduce(
       (acc, category) => acc + category.totalCost,
@@ -49,6 +50,7 @@ const Expenditure = () => {
   
 
   return (
+    <Layout>
     <div className="expenditure-container">
       <div className="expenditure-content">
         <div className="class">
@@ -85,6 +87,7 @@ const Expenditure = () => {
 
       <div className="expenditure-image"></div>
     </div>
+    </Layout>
   );
 };
 

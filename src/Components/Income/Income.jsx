@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Income.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Layout from "../Navbar/Layout";
 
 const Income = () => {
   const [incomeText, setIncomeText] = useState("");
@@ -51,7 +52,8 @@ const Income = () => {
   };
 
   return (
-    <div className="Income">
+    <Layout>
+    <div className="Income"> 
       <div className="div">
         <div className="class">
           <h1 className="cat-heading">Income</h1>
@@ -112,6 +114,7 @@ const Income = () => {
       </div>
       <div className="Income-image"></div>
     </div>
+    </Layout>
   );
 };
 

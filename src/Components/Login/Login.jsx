@@ -8,7 +8,7 @@ const Login = () => {
     <div className="body-bg">
     <div className="wrapper">
       <form action="">
-        <h1 style={{ color: "#4e0064;" }}>Login</h1>
+        <h1 style={{ color: "#4e0064" }}>Login</h1>
         <div className="input-box">
           <input type="text" placeholder="Username" required />
           <FaUser className="icon" />
