@@ -39,10 +39,9 @@
 .profile-left {
 }
 .profile-right {
-  
   width: 15rem;
   height: 15rem;
-  background-image: url("../assets/profile.svg");
+  background-image: url("../../assets/profile.svg");
   background-position: center;
   background-size: cover;
   justify-self: center;

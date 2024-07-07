@@ -59,13 +59,16 @@ button{
 .home-right-img{
   width: 37rem;
   height: 25rem;
-  background-image:url("../assets/home-left.svg");
+  background-image:url("../../assets/home-left.svg");
   background-position: center;
   background-size: cover;
   justify-self: center;
   background-repeat: no-repeat;
 }
-
+.link{
+  color: white;
+  text-decoration: none;
+}
 
 
 

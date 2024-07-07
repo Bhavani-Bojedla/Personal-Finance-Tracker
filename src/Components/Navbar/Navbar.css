@@ -13,7 +13,7 @@
     background-color: #913ce1;;
 }
 .nav-logo{
-    background-image: url("../assets/logo.jpg");
+    background-image: url("../../assets/logo.jpg");
     background-position: center;
     background-size: cover;
     width: 2.7rem;

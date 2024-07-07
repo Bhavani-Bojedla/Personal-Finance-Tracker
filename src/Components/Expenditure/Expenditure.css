@@ -1,0 +1,146 @@
+.category {
+  background-color: rgba(137, 43, 226, 0.455);
+  border: 1px solid #ccc;
+  padding:  0.5rem;
+  margin: 2rem;
+  border-radius: 5px;
+}
+.inputs{
+  width: 100%;
+  background-color: rgba(234, 195, 255, 0.41);
+  border: 0.25px solid grey;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+button{
+cursor: pointer;
+  padding: 0.5rem;
+  background-color: #8a2be2;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-right: 1rem ;
+  height: fit-content;
+  border: 0.5px solid black;
+}
+button:hover{
+  background-color: black;
+}
+.expenditure-container {
+padding-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.expenditure-content {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.expenditure-content h1 {
+  margin-bottom: 10px;
+}
+
+
+.expenditure-image {
+  background-image: url('../../assets/Expenditure.svg');
+  background-size: cover;
+  margin-top: 10rem;
+  width: 42%;
+  height: 50vh;
+  margin-right: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cat-heading {
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #4e0064;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cat-heading {
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #4e0064;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cat-details {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(234, 195, 255, 0.41);
+}
+
+.Expenditure-inputs {
+  display: flex;
+  flex-wrap: wrap; /* Ensure inputs wrap nicely on smaller screens */
+  gap: 10px;
+  align-items: center;
+}
+
+.Expenditure-inputs input {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem;
+  height: min-content;
+}
+.cat-heading {
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #4e0064;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.Ex-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.Ex-th, .Ex-td {
+  padding-left: 8px;
+  text-align: left;
+}
+
+.Ex-th {
+  padding: 8px;
+  background-color: #8a2be2;
+  color: white;
+}
+.Exp-button{
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.links{
+  color: white;
+  text-decoration: none;
+}
