@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className='nav-logo'></div>
       </Link>
       <div className='nav-right'>
-        <Link to='/' className='nav-text'>
+        <Link to='/home' className='nav-text'>
         <i className='bx bx-home nav-icon' ></i>Home</Link>
         <Link to='/history' className='nav-text'>
         <i className='bx bx-history nav-icon' ></i>History</Link>

@@ -18,7 +18,7 @@ const Expenditure = () => {
       setNewCategory("");
     }
   };
-
+   
   const handleDeleteCategory = (categoryName) => {
     const updatedCategories = categories.filter(
       (category) => category.name !== categoryName

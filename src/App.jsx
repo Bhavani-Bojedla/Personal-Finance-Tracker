@@ -9,14 +9,17 @@ import Income from "./Components/Income/Income";
 import Layout from "./Components/Navbar/Layout";
 import Navbar from "./Components/Navbar/Navbar";
 import Expenditure from "./Components/Expenditure/Expenditure";
+import Signup from "./Components/Signup/Signup";
+import Login from "./Components/Login/Login";
 
 function App() {
   return (
     <BrowserRouter>
-    <Navbar/>
+    {/* <Navbar/> */}
       <Routes>
-        
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login/>}></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
+        <Route path="/home" element={<Home />} />
         <Route path="/history" element={<History />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/expenditure" element={<Expenditure />}></Route>
