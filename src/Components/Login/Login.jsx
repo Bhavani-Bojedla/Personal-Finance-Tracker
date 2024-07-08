@@ -20,18 +20,18 @@ const Login = () => {
     let url="http://localhost:4000/users/checkuser";
     axios.post(url,inputObj)
     .then((res)=>{ console.log(res)
-      if(res.data==="success"){
-        alert("correct");
+      if(res.status===200){
         window.location.href = "/home";
-        // navigate('/home')
       }
-      else{
-      
-        Promise.reject();
-        alert("wrong")
+      else{     
+        Promise.reject();  
       }
     }).catch((e)=>{
-      console.log(e)
+      if (e.response && e.response.status === 400) {
+        alert(e.response.data); 
+      } else {
+        console.log(e);
+      }
     });
     event.preventDefault();
   }

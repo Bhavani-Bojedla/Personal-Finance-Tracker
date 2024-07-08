@@ -14,7 +14,7 @@ const Expenditure = () => {
   const [newCategory, setNewCategory] = useState("");
 
   const handleAddCategory = () => {
-    if (newCategory.trim() !== "") {
+    if (newCategory.trim() !== "") {   
       setCategories([...categories, { name: newCategory, totalCost: 0 }]);
       setNewCategory("");
     }
