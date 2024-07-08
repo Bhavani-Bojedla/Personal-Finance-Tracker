@@ -17,6 +17,22 @@ const Login = () => {
     let inputObj={Email,Password};
     console.log(inputObj);
 
+    let url1="http://localhost:4000/login/createlogin";
+    axios.post(url1,inputObj).then((res)=>{
+      if(res.status===200){
+        alert("login succesfull");
+      }
+      else{
+        Promise.reject();
+      }
+    }).catch(e=>{console.log(e)})
+
+
+
+
+
+
+
     let url="http://localhost:4000/users/checkuser";
     axios.post(url,inputObj)
     .then((res)=>{ console.log(res)

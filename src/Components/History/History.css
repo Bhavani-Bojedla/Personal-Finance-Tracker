@@ -1,22 +1,31 @@
-.content {
-    background-image: url("../../assets/himg.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    /* position:relative; */
-    margin-top: 4.5rem;
-  }
-  .text{
-     margin-left: 50px;
+.body-history{
+   padding: 5rem;
+}
 
-  }
-  table,thead,tr,th{
-    margin-top: 5%;
-     padding-right: 30px;
-     margin-bottom: 25%;
-     border: 1px solid black;
-     border-collapse: collapse;
-     padding: 10px;
-     width: 50rem;
-
-  }
+.historyTable{
+   margin-top: 10px;
+   width: 80%;
+   margin-left: 10%;
+ }
+ 
+ .historyHead, .historydata {
+   padding-left: 8px;
+   text-align: left;
+   width: 25%;
+   background-color: rgb(232, 192, 255);
+ } 
+ .historydata{
+   height: 3rem;
+ }
+ .historyHead {
+   padding: 8px;
+   background-color: #8a2be2;
+   color: white;
+ }
+ .history{
+   text-align: center;
+ }
+ .cost{
+   color: green;
+   font-weight: bold;
+ }

@@ -68,24 +68,6 @@ import axios from "axios";
 export default function Profile() {
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem('token'); // or however you store your token
-        const res = await axios.get("http://localhost:4000/users/getusers", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setUser(res.data);
-      } catch (e) { 
-        console.log(e);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
   return (
     <Layout>
       <div className="profile">
@@ -96,21 +78,25 @@ export default function Profile() {
               <div className="profile-text">
                 <div className="profile-text-1">First Name</div>
                 <div className="profile-details">{user.Name}</div>
+                {/* <div className="profile-details">Demo</div> */}
                 <hr />
               </div>
               <div className="profile-text" style={{ marginLeft: "0.5rem" }}>
                 <div className="profile-text-1">Last Name</div>
                 <div className="profile-details">{user.Username}</div>
+                {/* <div className="profile-details">Demo User</div> */}
                 <hr />
               </div>
               <div className="profile-text">
                 <div className="profile-text-1">Email</div>
                 <div className="profile-details">{user.Email}</div>
+                {/* <div className="profile-details">Demo@gmail.com</div> */}
                 <hr />
               </div>
               <div className="profile-text">
                 <div className="profile-text-1">Phone Number</div>
                 <div className="profile-details">{user.Password}</div>
+                {/* <div className="profile-details">123456789</div> */}
                 <hr />
               </div>
             </div>

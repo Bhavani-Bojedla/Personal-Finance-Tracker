@@ -134,6 +134,9 @@ padding-top: 3rem;
   background-color: #8a2be2;
   color: white;
 }
+.Ex-td{
+  background-color: rgb(227, 171, 255);
+}
 .Exp-button{
   border: none;
   padding: 5px 10px;
@@ -143,4 +146,15 @@ padding-top: 3rem;
 .links{
   color: white;
   text-decoration: none;
+}
+.exp-cost{
+  color: red;
+  font-weight: bold;
+}
+.dropdown{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem;
+  height: min-content;
+  width: 70%;
 }
