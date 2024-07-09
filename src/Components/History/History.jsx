@@ -11,7 +11,7 @@ export default function History() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/incomes/getincomes")
+      .get("http://localhost:4000/income/getincomes")
       .then((res) => {
         console.log(res.data);
         setIncomes(res.data);
@@ -37,9 +37,9 @@ export default function History() {
     return data.map((income) => {
       return (
         <tr>
-          <td className="historydata">{income.incomeText}</td>
-          <td className="historydata cost">{income.incomeCost}</td>
-          <td className="historydata">{income.incomeDate}</td>
+          <td className="historydata">{income.IncomeText}</td>
+          <td className="historydata cost">{income.IncomeCost}</td>
+          <td className="historydata">{income.IncomeDate}</td>
         </tr>
       );
     });

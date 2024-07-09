@@ -11,11 +11,14 @@ import Navbar from "./Components/Navbar/Navbar";
 import Expenditure from "./Components/Expenditure/Expenditure";
 import Signup from "./Components/Signup/Signup";
 import Login from "./Components/Login/Login";
+import { Savings } from "./Savings";
 
 function App() {
+
   return (
     <BrowserRouter>
     {/* <Navbar/> */}
+    {/* <Savings/> */}
       <Routes>
         <Route path="/" element={<Login/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
