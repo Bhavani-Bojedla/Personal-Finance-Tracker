@@ -25,7 +25,7 @@ const Signup = () => {
 
     let inputObj={Name,Username,Email,Password};
     console.log(inputObj);
-    let url="http://localhost:4000/users/createuser";
+    let url="https://personal-finance-tracker-backend-final.onrender.com/users/createuser";
     axios.post(url,inputObj).then((res)=>{
       if(res.status===200){
         alert("user created succesfully");

@@ -9,9 +9,10 @@
     padding-right: 1rem;
     position: fixed;
     height: 3.5rem;
+    text-decoration: none;
     width: 100%;
     /* background-color: hsla(0, 0%, 100%, 0.2); */
-    background-color: #913ce1;;
+    background-color: #913ce1;
 }
 .nav-logo{
     background-image: url("../../assets/logo-img.jpg");

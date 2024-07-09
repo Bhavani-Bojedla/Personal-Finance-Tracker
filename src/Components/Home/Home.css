@@ -37,7 +37,7 @@ button{
 .btn-2{
   height: 3.22rem;
   width: 12rem;
-  border:3px solid  #913ce1;;
+  border:3px solid  #913ce1;
   background: none;
   color: #913ce1;
   border-radius: 1.2rem;
@@ -47,20 +47,19 @@ button{
   cursor: pointer;
   margin-left: 4rem;
 }
-.btn-2:hover,.btn-1:hover{
-  background-color: #4e0064;
-  border: none;
-  color: white;
-}
+
 .home-savings{
   margin-top: 2rem;
-  padding: 1rem;
-  border: 3px #913ce1 solid;
-  border-radius:3rem;
   font-size: 1.2rem;
-  width: 13rem;
-  text-align: center;
-  color: #602596;
+  width: 27%;
+}
+strong{
+  margin-left: 20px;
+  color: #4e0064;;
+}
+.details-box{
+  display: flex;
+  gap: 10px;
 }
 .home-right-img{
   width: 37rem;
@@ -71,11 +70,20 @@ button{
   justify-self: center;
   background-repeat: no-repeat;
 }
-.link{
-  color: white;
-  text-decoration: none;
+.buttons-div{
+  display: flex;
 }
 
-
-
-
+.btn-2:hover,.btn-1:hover{
+  background-color: #4e0064;
+  color: white;
+  transition: 2s;
+  border: #4e0064;
+}
+.link{
+  color: #913ce1;
+  text-decoration: none;
+}
+.btn-2:hover .link{
+  color: white;
+}

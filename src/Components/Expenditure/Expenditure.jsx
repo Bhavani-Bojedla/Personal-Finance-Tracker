@@ -3,7 +3,7 @@ import "../Expenditure/Expenditure.css";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 
-const Expenditure = () => {
+const Expenditure = (props) => {
   const [expenditures, setExpenditures] = useState([]);
   const [expenditureText, setExpenditureText] = useState("");
   const [expenditureDate, setExpenditureDate] = useState("");
@@ -12,7 +12,7 @@ const Expenditure = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/expenditure/getexpenditure")
+      .get("https://personal-finance-tracker-backend-final.onrender.com/expenditure/getexpenditure")
       .then((res) => {
         setExpenditures(res.data);
       })
@@ -28,7 +28,7 @@ const Expenditure = () => {
       ExpenditureCost: expenditureCost,
       ExpenditureCategory: expenditureCategory,
     };
-    const url = "http://localhost:4000/expenditure/createexpenditure";
+    const url = "https://personal-finance-tracker-backend-final.onrender.com/expenditure/createexpenditure";
 
     axios
       .post(url, inpObj)
@@ -49,7 +49,7 @@ const Expenditure = () => {
 
   const handleDeleteExpenditure = (id) => {
     axios
-      .delete("http://localhost:4000/expenditure/deleteexpenditure/" + id)
+      .delete("https://personal-finance-tracker-backend-final.onrender.com/expenditure/deleteexpenditure/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.status === 200) {
@@ -100,6 +100,7 @@ const Expenditure = () => {
             <h1 className="cat-heading">Expenditure</h1>
           </div>
           <h3>Total Expenditure is: &#8377; {calculateTotalExpenditure()}</h3>
+          <h3>Total savings : &#8377;{props.calculateTotalSavings()}</h3>
           <div className="inc-details">
             <div className="Income-inputs">
               <input

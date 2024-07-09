@@ -7,7 +7,7 @@ export default function Profile() {
   useEffect(()=>{
     // const userId = localStorage.getItem("userId");
     // console.log(userId);
-axios.get("http://localhost:4000/users/getusers")
+axios.get("https://personal-finance-tracker-backend-final.onrender.com/users/getusers")
 .then((res)=>{
   console.log(res.data);
   setusers(res.data); 

@@ -17,7 +17,7 @@ const Login = () => {
     let inputObj={Email,Password};
     console.log(inputObj);
 
-    let url="http://localhost:4000/users/checkuser";
+    let url="https://personal-finance-tracker-backend-final.onrender.com/users/checkuser";
     axios.post(url,inputObj)
     .then((res)=>{ console.log(res)
       if(res.status===200){   

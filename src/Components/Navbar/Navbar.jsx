@@ -5,7 +5,10 @@ export default function Navbar() {
   return (
     <div className='navbar'>
       <Link to='/home' className='nav-left'>
+      {/* <div style={{display:'flex',alignItems:'center',}}> */}
       <div className='nav-logo'></div>
+      {/* <div style={{color:'white',width:'15rem',paddingLeft:'1rem',textDecoration:'none'}}>Personal-Finance-Tracker</div> */}
+      {/* </div> */}
       </Link>
       <div className='nav-right'>
         <Link to='/home' className='nav-text'>

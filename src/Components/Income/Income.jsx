@@ -5,44 +5,20 @@ import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useEffect } from "react";
 
-const Income = () => {
+const Income = (props) => {
   const [incomeText, setIncomeText] = useState("");
   const [incomeCost, setIncomeCost] = useState("");
   const [incomeDate, setIncomeDate] = useState(""); 
   const [incomes, setIncomes] = useState([]);
   const [expenditures, setExpenditures] = useState([]);
- 
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:4000/income/getincomes")
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setIncomes(res.data);
-  //       calculateTotalExpenditure(res.data); 
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
 
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/income/getincomes")
+      .get("https://personal-finance-tracker-backend-final.onrender.com/income/getincomes")
       .then((res) => {
         console.log(res.data);
         setIncomes(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axios
-      .get("http://localhost:4000/expenditure/getexpenditure")
-      .then((res) => {
-        console.log(res.data);
-        setExpenditures(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -52,7 +28,7 @@ const Income = () => {
 
   const handleAddIncome = () => {
     let inpObj = {IncomeText: incomeText, IncomeCost:incomeCost, IncomeDate:incomeDate };
-    const Url = "http://localhost:4000/income/createincome";
+    const Url = "https://personal-finance-tracker-backend-final.onrender.com/income/createincome";
     axios
       .post(Url, inpObj)
       .then((res) => {
@@ -71,7 +47,7 @@ const Income = () => {
 
   const handleDeleteIncome = (id) => {
     axios
-      .delete("http://localhost:4000/income/deleteincome/" + id)
+      .delete("https://personal-finance-tracker-backend-final.onrender.com/income/deleteincome/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.status === 200) {
@@ -92,15 +68,6 @@ const Income = () => {
       totalIncome= totalIncome + income.IncomeCost;
     })
     return totalIncome;
-  };
-  const calculateTotalExpenditure = () => {
-    let totalExpenditure = expenditures.reduce((total, expenditure) => total + parseFloat(expenditure.ExpenditureCost), 0);
-    return totalExpenditure.toFixed(2);
-  };
-  const calculateTotalSavings = () => {
-    let totalIncome = parseFloat(calculateTotalIncome());
-    let totalExpenditure = parseFloat(calculateTotalExpenditure());
-    return (totalIncome - totalExpenditure).toFixed(2);
   };
 
 
@@ -137,9 +104,8 @@ const Income = () => {
               </Link> 
             </button>
           </div>
-          <h3>Total Income is: &#8377;{calculateTotalIncome()}</h3>
-          {/* <h3>Total Expenditure is: &#8377;{calculateTotalExpenditure()}</h3> */}
-          <h3>Total Savings is: &#8377;{calculateTotalSavings()}</h3>
+          <h3>Total Income : &#8377;{calculateTotalIncome()}</h3>
+          <h3>Total savings : &#8377;{props.calculateTotalSavings()}</h3>
           <div className="inc-details">
             <div className="Income-inputs">
               <input
