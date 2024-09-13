@@ -35,7 +35,7 @@ function App() {
       .get("https://personal-finance-tracker-backend-final.onrender.com/expenditure/getexpenditure")
       .then((res) => {
         setExpenditures(res.data);
-      })
+      }) 
       .catch((error) => {
         console.error(error);
       });

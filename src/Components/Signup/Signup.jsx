@@ -22,7 +22,6 @@ const Signup = () => {
       alert("Passwords do not match");
       return;
     }
-
     let inputObj={Name,Username,Email,Password};
     console.log(inputObj);
     let url="https://personal-finance-tracker-backend-final.onrender.com/users/createuser";
