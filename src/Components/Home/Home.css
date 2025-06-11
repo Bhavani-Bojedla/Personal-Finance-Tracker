@@ -77,7 +77,7 @@ strong{
 .btn-2:hover,.btn-1:hover{
   background-color: #4e0064;
   color: white;
-  transition: 2s;
+  transition: 1s;
   border: #4e0064;
 }
 .link{

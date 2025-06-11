@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Expenditure/Expenditure.css";
 import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Expenditure = (props) => {
@@ -10,37 +11,37 @@ const Expenditure = (props) => {
   const [expenditureCost, setExpenditureCost] = useState("");
   const [expenditureCategory, setExpenditureCategory] = useState("");
 
+  const userId = localStorage.getItem("userId");
+
   useEffect(() => {
     axios
-      .get("https://personal-finance-tracker-backend-final.onrender.com/expenditure/getexpenditure")
+      .get(`https://personal-finance-tracker-backend-hazel.vercel.app/expenditure/getexpenditure/${userId}`)
       .then((res) => {
-        setExpenditures(res.data);
+        setExpenditures(res.data.expenditure);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [userId]);
 
   const handleAddExpenditure = () => {
     const inpObj = {
       ExpenditureText: expenditureText,
       ExpenditureDate: expenditureDate,
-      ExpenditureCost: expenditureCost,
+      ExpenditureCost: Number(expenditureCost),
       ExpenditureCategory: expenditureCategory,
+      userId: userId,
     };
-    const url = "https://personal-finance-tracker-backend-final.onrender.com/expenditure/createexpenditure";
 
     axios
-      .post(url, inpObj)
+      .post("https://personal-finance-tracker-backend-hazel.vercel.app/expenditure/createexpenditure", inpObj)
       .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          alert("Expenditure added");
-          window.location.reload();
-          setExpenditures([...expenditures, res.data]);
-        } else {
-          return Promise.reject();
-        }
+        alert("Expenditure added");
+        setExpenditures((prev) => [...prev, res.data.expenditure]);
+        setExpenditureText("");
+        setExpenditureDate("");
+        setExpenditureCost("");
+        setExpenditureCategory("");
       })
       .catch((error) => {
         console.error(error);
@@ -49,19 +50,20 @@ const Expenditure = (props) => {
 
   const handleDeleteExpenditure = (id) => {
     axios
-      .delete("https://personal-finance-tracker-backend-final.onrender.com/expenditure/deleteexpenditure/" + id)
+      .delete(`https://personal-finance-tracker-backend-hazel.vercel.app/expenditure/deleteexpenditure/${id}`, {
+        data: { userId: userId },
+      })
       .then((res) => {
-        console.log(res.data);
-        if (res.status === 200) {
-          alert("Expenditure deleted successfully");
-          window.location.reload();
-        } else {
-          Promise.reject();
-        }
+        alert("Expenditure deleted successfully");
+        setExpenditures(expenditures.filter((item) => item._id !== id));
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const calculateTotalExpenditure = () => {
+    return expenditures.reduce((total, item) => total + Number(item.ExpenditureCost), 0);
   };
 
   const display = (data) => {
@@ -72,10 +74,7 @@ const Expenditure = (props) => {
         <td className="Ex-td">{expenditure.ExpenditureDate}</td>
         <td className="Ex-td">{expenditure.ExpenditureCategory}</td>
         <td className="Ex-td">
-          <button
-            onClick={() => handleDeleteExpenditure(expenditure._id)}
-            className="Exp-button"
-          >
+          <button onClick={() => handleDeleteExpenditure(expenditure._id)} className="Exp-button">
             Delete
           </button>
         </td>
@@ -83,21 +82,18 @@ const Expenditure = (props) => {
     ));
   };
 
-  const calculateTotalExpenditure = () => {
-    let totalExpenditure = 0;
-    expenditures.forEach((expenditure) => {
-      totalExpenditure = totalExpenditure + expenditure.ExpenditureCost;
-    });
-    return totalExpenditure;
-  };
-
   return (
     <>
       <Navbar />
-      <div className="Income">
+      <div className="Income ">
         <div className="div">
           <div className="class">
             <h1 className="cat-heading">Expenditure</h1>
+            <button>
+                          <Link className="links" to="/home">
+                            Go back to Home
+                          </Link>
+                        </button>
           </div>
           <h3>Total Expenditure is: &#8377; {calculateTotalExpenditure()}</h3>
           <h3>Total savings : &#8377;{props.calculateTotalSavings()}</h3>
@@ -117,13 +113,11 @@ const Expenditure = (props) => {
                 onChange={(e) => setExpenditureCost(e.target.value)}
               />
               <select
-                id="expenditure"
-                name="expenditure"
                 className="dropdown"
                 value={expenditureCategory}
                 onChange={(e) => setExpenditureCategory(e.target.value)}
               >
-                <option value="Category">Select a Category</option>
+                <option value="">Select a Category</option>
                 <option value="housing">Housing</option>
                 <option value="food">Food</option>
                 <option value="transportation">Transportation</option>

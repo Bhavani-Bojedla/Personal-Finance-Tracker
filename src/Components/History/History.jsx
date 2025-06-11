@@ -1,73 +1,77 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Navbar/Layout";
 import axios from "axios";
-import { useState } from "react";
-import '../History/History.css'
-
+import "../History/History.css";
 
 export default function History() {
-  const [incomes, setIncomes] = useState([]);
-  const [expenditures, setExpenditures] = useState([]);
+  const [historyData, setHistoryData] = useState([]);
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    axios
-      .get("https://personal-finance-tracker-backend-final.onrender.com/income/getincomes")
-      .then((res) => {
-        console.log(res.data);
-        setIncomes(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const [incomeRes, expenditureRes] = await Promise.all([
+          axios.get(`https://personal-finance-tracker-backend-hazel.vercel.app/income/getincome/${userId}`),
+          axios.get(`https://personal-finance-tracker-backend-hazel.vercel.app/expenditure/getexpenditure/${userId}`)
+        ]);
 
-  useEffect(() => {
-    axios
-      .get("https://personal-finance-tracker-backend-final.onrender.com/expenditure/getexpenditure")
-      .then((res) => {
-        console.log(res.data);
-        setExpenditures(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+        const incomes = (incomeRes.data.income || []).map((item) => ({
+          id: item._id,
+          type: "Income",
+          title: item.IncomeText,
+          cost: Number(item.IncomeCost),
+          date: item.IncomeDate,
+        }));
 
-  const Indisplay = (data) => {
-    return data.map((income) => {
-      return (
-        <tr>
-          <td className="historydata">{income.IncomeText}</td>
-          <td className="historydata cost">{income.IncomeCost}</td>
-          <td className="historydata">{income.IncomeDate}</td>
-        </tr>
-      );
-    });
-  };
-  const Exdisplay = (data) => {
-    return data.map((expenditure) => (
-      <tr key={expenditure._id}>
-        <td className="historydata">{expenditure.ExpenditureText}</td>
-        <td className="historydata exp-cost">&#8377;{expenditure.ExpenditureCost}</td>
-        <td className="historydata">{expenditure.ExpenditureDate}</td>
-      </tr>
-    ));
-  };
+        const expenditures = (expenditureRes.data.expenditure || []).map((item) => ({
+          id: item._id,
+          type: "Expenditure",
+          title: item.ExpenditureText,
+          cost: -Number(item.ExpenditureCost), // use negative to differentiate visually
+          date: item.ExpenditureDate,
+        }));
+
+        const combinedHistory = [...incomes, ...expenditures].sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+
+        setHistoryData(combinedHistory);
+      } catch (error) {
+        console.error("Error fetching history data:", error);
+      }
+    };
+
+    if (userId) {
+      fetchData();
+    }
+  }, [userId]);
 
   return (
     <Layout>
       <div className="body-history">
-      <h1 className="history">History</h1>
-      <table className="historyTable">
-        <thead>
-          <tr className="historyRow">
-            <th className="historyHead">Heading</th>
-            <th className="historyHead ">Cost</th>
-            <th className="historyHead">Date</th>
-          </tr>
-        </thead>
-        <tbody>{Indisplay(incomes)} {Exdisplay(expenditures)}</tbody>
-      </table>
+        <h1 className="history">History</h1>
+        <table className="historyTable">
+          <thead>
+            <tr className="historyRow">
+              <th className="historyHead">Type</th>
+              <th className="historyHead">Title</th>
+              <th className="historyHead">Amount (₹)</th>
+              <th className="historyHead">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {historyData.map((item) => (
+              <tr key={item.id}>
+                <td className="historydata">{item.type}</td>
+                <td className="historydata">{item.title}</td>
+                <td className={`historydata ${item.cost < 0 ? "exp-cost" : "cost"}`}>
+                  ₹{Math.abs(item.cost)}
+                </td>
+                <td className="historydata">{item.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </Layout>
   );

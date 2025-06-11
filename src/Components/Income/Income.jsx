@@ -1,111 +1,92 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Income.css";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
-import { useEffect } from "react";
 
 const Income = (props) => {
   const [incomeText, setIncomeText] = useState("");
   const [incomeCost, setIncomeCost] = useState("");
-  const [incomeDate, setIncomeDate] = useState(""); 
+  const [incomeDate, setIncomeDate] = useState("");
   const [incomes, setIncomes] = useState([]);
-  const [expenditures, setExpenditures] = useState([]);
 
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     axios
-      .get("https://personal-finance-tracker-backend-final.onrender.com/income/getincomes")
-      .then((res) => {
-        console.log(res.data);
-        setIncomes(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  
+      .get(`https://personal-finance-tracker-backend-hazel.vercel.app/income/getincome/${userId}`)
+      .then((res) => setIncomes(res.data.income))
+      .catch((error) => console.log(error));
+  }, [userId]);
 
   const handleAddIncome = () => {
-    let inpObj = {IncomeText: incomeText, IncomeCost:incomeCost, IncomeDate:incomeDate };
-    const Url = "https://personal-finance-tracker-backend-final.onrender.com/income/createincome";
+    const newIncome = {
+      IncomeText: incomeText,
+      IncomeCost: Number(incomeCost),
+      IncomeDate: incomeDate,
+      userId: userId,
+    };
+
     axios
-      .post(Url, inpObj)
+      .post("https://personal-finance-tracker-backend-hazel.vercel.app/income/createincome", newIncome)
       .then((res) => {
-        if (res.status === 200) {
-          alert("Income added");
-           window.location.reload();
-           setIncomes([...incomes, res.data]);
-        } else {
-          Promise.reject();
-        }
+        alert("Income added");
+        setIncomes((prev) => [res.data, ...prev]);
+        setIncomeText("");
+        setIncomeCost("");
+        setIncomeDate("");
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   };
 
   const handleDeleteIncome = (id) => {
     axios
-      .delete("https://personal-finance-tracker-backend-final.onrender.com/income/deleteincome/" + id)
-      .then((res) => {
-        console.log(res.data);
-        if (res.status === 200) {
-          alert("Income deleted successfully");
-          window.location.reload();
-        } else {
-          Promise.reject();
-        }
+      .delete(`https://personal-finance-tracker-backend-hazel.vercel.app/income/deleteincome/${id}`)
+      .then(() => {
+        alert("Income deleted successfully");
+        setIncomes((prev) => prev.filter((income) => income._id !== id));
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   const calculateTotalIncome = () => {
-    let totalIncome=0;
-    incomes.forEach((income)=>{
-      totalIncome= totalIncome + income.IncomeCost;
-    })
-    return totalIncome;
+    return incomes.reduce((sum, income) => sum + Number(income.IncomeCost), 0);
   };
 
-
   const display = (data) => {
-    return data.map((income) => {
-      return (
-        <tr>
-          <td className="Inc-td">{income.IncomeText}</td>
-          <td className="Inc-td cost">&#8377;{income.IncomeCost}</td>
-          <td className="Inc-td">{income.IncomeDate}</td>
-          <td className="Inc-td">
-            <button
-              onClick={() => handleDeleteIncome(income._id)}
-              className="Exp-button"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      );
-    });
+    return data.map((income) => (
+      <tr key={income._id}>
+        <td className="Inc-td">{income.IncomeText}</td>
+        <td className="Inc-td cost">&#8377;{income.IncomeCost}</td>
+        <td className="Inc-td">{income.IncomeDate}</td>
+        <td className="Inc-td">
+          <button
+            onClick={() => handleDeleteIncome(income._id)}
+            className="Exp-button"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    ));
   };
 
   return (
     <>
       <Navbar />
-      <div className="Income lenght">
+      <div className="Income ">
         <div className="div">
           <div className="class">
             <h1 className="cat-heading">Income</h1>
             <button>
               <Link className="links" to="/home">
                 Go back to Home
-              </Link> 
+              </Link>
             </button>
           </div>
-          <h3>Total Income : &#8377;{calculateTotalIncome()}</h3>
-          <h3>Total savings : &#8377;{props.calculateTotalSavings()}</h3>
+          <h3>Total Income: &#8377;{calculateTotalIncome()}</h3>
+          <h3>Total Savings: &#8377;{props.calculateTotalSavings()}</h3>
+
           <div className="inc-details">
             <div className="Income-inputs">
               <input
@@ -123,18 +104,17 @@ const Income = (props) => {
               />
               <input
                 type="date"
-                placeholder="Date"
-                style={{ width: "18px" }}
                 value={incomeDate}
                 onChange={(e) => setIncomeDate(e.target.value)}
               />
               <button onClick={handleAddIncome}>Add Income</button>
             </div>
+
             <table className="Inc-table">
               <thead>
                 <tr className="Inc-tr">
                   <th className="Inc-th">Income</th>
-                  <th className="Inc-th">&#8377;Cost</th>
+                  <th className="Inc-th">&#8377; Cost</th>
                   <th className="Inc-th">Date</th>
                   <th className="Inc-th">Action</th>
                 </tr>
