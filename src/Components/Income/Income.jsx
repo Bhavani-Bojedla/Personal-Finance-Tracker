@@ -15,7 +15,7 @@ const Income = (props) => {
   useEffect(() => {
     axios
       .get(`https://personal-finance-tracker-backend-hazel.vercel.app/income/getincome/${userId}`)
-      .then((res) => setIncomes(res.data.income))
+      .then((res) => setIncomes(res.data.income || []))
       .catch((error) => console.log(error));
   }, [userId]);
 
@@ -50,7 +50,10 @@ const Income = (props) => {
   };
 
   const calculateTotalIncome = () => {
-    return incomes.reduce((sum, income) => sum + Number(income.IncomeCost), 0);
+    return (incomes || []).reduce(
+      (sum, income) => sum + Number(income.IncomeCost),
+      0
+    );
   };
 
   const display = (data) => {
