@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Navbar/Layout";
 import "../Home/Home.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 export default function Home(props) {
+  const [user,setUser]=useState("User");
+  
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    axios
+      .get(`https://personal-finance-tracker-backend-hazel.vercel.app/users/getuser/${userId}`)
+
+      .then((res) => {setUser(res.data.user.Name); })
+      .catch((error) => console.log(error));
+      console.log(user);
+      
+  }, [userId]);
+
   return (
     <Layout>
       <div className="home">
         <div className="home-left">
           <div className="home-head">
             Hello,
-            <span style={{ color: "#913ce1" }}> User &#128075;</span>
+            <span style={{ color: "#913ce1" }}> {user} &#128075;</span>
           </div>
           <p className="para">
             Welcome to Your Personal Finance Tracker ! <br />

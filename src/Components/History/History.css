@@ -1,31 +1,314 @@
-.body-history{
-   padding: 5rem;
+
+.body-history {
+  padding: 5rem;
 }
 
-.historyTable{
-   margin-top: 10px;
-   width: 80%;
-   margin-left: 10%;
- }
- 
- .historyHead, .historydata {
-   padding-left: 8px;
-   text-align: left;
-   width: 25%;
-   background-color: rgb(232, 192, 255);
- } 
- .historydata{
-   height: 3rem;
- }
- .historyHead {
-   padding: 8px;
-   background-color: #8a2be2;
-   color: white;
- }
- .history{
-   text-align: center;
- }
- .cost{
-   color: green;
-   font-weight: bold;
- }
+/* ==============================
+   PAGE TITLE
+============================== */
+
+.history {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ==============================
+   TABS
+============================== */
+
+.history-tabs {
+  width: 80%;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 2px solid #8a2be2;
+}
+
+.history-tab {
+  padding: 12px 25px;
+  border: none;
+  background-color: #eee;
+  color: #555;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: 0.3s;
+}
+
+.history-tab:hover {
+  background-color: #d9b3ff;
+}
+
+.active-tab {
+  background-color: #8a2be2;
+  color: white;
+}
+
+/* ==============================
+   CONTENT
+============================== */
+
+.history-content {
+  width: 100%;
+}
+
+.history-group {
+  margin-bottom: 3rem;
+}
+
+.group-title {
+  width: 80%;
+  margin: 0 auto 10px auto;
+  padding: 12px 15px;
+  background-color: #e8c0ff;
+  color: #4b0082;
+  border-radius: 8px;
+  text-align: left;
+}
+
+/* ==============================
+   TABLE
+============================== */
+
+.historyTable {
+  margin-top: 10px;
+  width: 80%;
+  margin-left: 10%;
+  border-collapse: collapse;
+}
+
+.historyHead,
+.historydata {
+  padding-left: 8px;
+  text-align: left;
+  width: 25%;
+  background-color: rgb(232, 192, 255);
+}
+
+.historydata {
+  height: 3rem;
+  border-bottom: 1px solid white;
+}
+
+.historyHead {
+  padding: 8px;
+  background-color: #8a2be2;
+  color: white;
+}
+
+.historyRow {
+  height: 3rem;
+}
+
+/* ==============================
+   AMOUNT COLORS
+============================== */
+
+.cost {
+  color: green;
+  font-weight: bold;
+}
+
+.exp-cost {
+  color: red;
+  font-weight: bold;
+}
+
+/* ==============================
+   DAILY SUMMARY
+============================== */
+
+.daily-summary-row td {
+  background-color: #f1ddff;
+  padding: 15px;
+}
+
+.daily-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.summary-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+
+.summary-label {
+  font-weight: bold;
+  color: #555;
+  font-size: 15px;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ==============================
+   MONTH WISE
+============================== */
+
+.month-card {
+  width: 80%;
+  margin: 0 auto 2rem auto;
+}
+
+.month-summary {
+  display: flex;
+  gap: 15px;
+}
+
+.summary-box {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f1ddff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-box span {
+  font-size: 15px;
+  color: #555;
+}
+
+.summary-box strong {
+  font-size: 22px;
+}
+
+/* ==============================
+   MONTH + DAY + EXPENDITURE
+============================== */
+
+.month-section {
+  width: 80%;
+  margin: 0 auto 3rem auto;
+}
+
+.month-title {
+  background-color: #8a2be2;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.day-section {
+  margin: 0 0 1.5rem 25px;
+  border-left: 4px solid #8a2be2;
+  padding-left: 20px;
+}
+
+.day-title {
+  background-color: #e8c0ff;
+  color: #4b0082;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.income-line,
+.expenditure-line,
+.day-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  background-color: #f7edff;
+  border-radius: 5px;
+}
+
+.income-line {
+  border-left: 4px solid green;
+}
+
+.expenditure-line {
+  border-left: 4px solid red;
+}
+
+.day-total {
+  margin-top: 10px;
+  background-color: #e8c0ff;
+  font-weight: bold;
+}
+
+.expenditure-list {
+  margin-top: 10px;
+}
+
+.no-expenditure,
+.no-data {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 768px) {
+  .body-history {
+    padding: 2rem 1rem;
+  }
+
+  .history-tabs {
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .history-tab {
+    white-space: nowrap;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .historyTable {
+    width: 100%;
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  .group-title {
+    width: 100%;
+  }
+
+  .month-card,
+  .month-section {
+    width: 100%;
+  }
+
+  .month-summary {
+    flex-direction: column;
+  }
+
+  .day-section {
+    margin-left: 0;
+    padding-left: 10px;
+  }
+
+  .historyHead,
+  .historydata {
+    padding: 8px;
+  }
+
+  .daily-summary {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .summary-item {
+    width: 100%;
+  }
+}

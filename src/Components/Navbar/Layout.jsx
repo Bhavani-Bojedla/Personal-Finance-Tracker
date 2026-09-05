@@ -10,7 +10,7 @@ export default function Layout(props) {
       <Navbar />
    
       <main className="layout-main" style={{ height: "100vh" }}>{props.children}</main>
-      <Footer />
+    <div className="footer-container"> <Footer /></div> 
     </div>
   );
 }
